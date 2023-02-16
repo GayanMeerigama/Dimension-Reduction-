@@ -1,0 +1,17 @@
+X=read.csv("/home/gayan/Desktop/stringtovector2.csv")
+
+install.packages("fastICA")
+
+library(fastICA)
+
+fastICA(X, n.comp, alg.typ = c("parallel","deflation"),fun = c("logcosh","exp"), alpha = 1.0, method = c("R","C"),row.norm = FALSE, maxit=200, tol = 1e-04, verbose = FALSE,w.init = NULL)
+
+a <- fastICA(X, 2, alg.typ = "parallel", fun = "logcosh", alpha = 1, method = "C", row.norm = FALSE, maxit = 200, tol = 0.0001, verbose = TRUE
+
+STV_ICA <- fastICA(STV, 2, alg.typ = "parallel", fun = "logcosh", alpha = 1, method = "R", row.norm = FALSE, maxit = 200, tol = 0.0001, verbose = TRUE)
+
+sink("/home/gayan/Desktop/output.txt")
+
+dat <- read.csv("file.csv",header=F)$V1
+
+options(max.print=1000000000)

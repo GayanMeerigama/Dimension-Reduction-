@@ -1,0 +1,6 @@
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"   //E: Unable to locate package vlc
+sudo apt-get update
+network -> networkproxy -> manual
+scp gayan@aiken.ce.pdn.ac.lk:/home/gayan/Desktop/apply_PC_no1.arff  ./
+scp weka-3-7-12.zip  hpc-admin@aiken.ce.pdn.ac.lk:/home/hpc-admin/gayan
+unzip file.zip -d destination_folder

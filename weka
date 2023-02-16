@@ -1,0 +1,21 @@
+java -jar -Xmx1024m weka.jar
+
+java  -classpath weka.jar weka.classifiers.lazy.IB1 -t ARFF/raw/$trainfilename -T ARFF/raw/$testfilename
+
+java -classpath ../weka-3-6-10/weka.jar weka.filters.unsupervised.attribute.PrincipalComponents -R 0.95 -A 5 -M -1 -i data/pc_95
+
+java -classpath ../weka-3-6-10/weka.jar weka.filters.unsupervised.attribute.StringToWordVector -O -C -T -I -N 0 -M 1 -i data/crypt_med.arff > /home/gayan/Desktop/pc_95
+
+java -classpath ../weka-3-6-10/weka.jar weka.filters.unsupervised.attribute.PrincipalComponents -R 0.95 -A 5 -M 2 -i /home/gayan/Desktop/stringtovector2.arff  > /home/gayan/Desktop/apply_pc_no2.arff
+
+java -classpath ../weka-3-6-10/weka.jar weka.clusterers.SimpleKMeans -N 2 -t /home/gayan/Desktop/apply_pc.arff  > /home/gayan/Desktop/kmeans2
+
+java -classpath ../weka-3-6-10/weka.jar weka.attributeSelection.CfsSubsetEval -M -s "weka.attributeSelection.BestFirst -D 1 -N 5" -i /home/gayan/Desktop/weka-3-6-10/data/stringtovector2.arff > /home/gayan/Desktop/bestfirst.arff
+
+gayan@hpc:~/Desktop$ scp gayan@aiken.ce.pdn.ac.lk:/home/gayan/Desktop/pc.arff ./
+
+gayan@gayan ~ $ scp /home/ccuser/Desktop/apply_pc.arff gayan@aiken.ce.pdn.ac.lk:/home/gayan/Desktop/
+
+java -classpath ../weka-3-7-12/weka.jar weka.core.converters.CSVSaver -i /home/hpc-admin/gayan/stringtowordvector_noclass.arff -o /home/hpc-admin/gayan/stringtowordvector_noclass.csv
+java -classpath ../weka-3-7-12/weka.jar weka.core.converters.CSVSaver -i /home/hpc-admin/gayan/stringtowordvector_noclass.arff -o /home/hpc-admin/gayan/stringtowordvector_noclass.csv
+java weka.core.converters.CSVLoader  /home/ccuser/Desktop/PCA2_ICA_sample.csv > /home/ccuser/Desktop/PCA2_ICA_sample.arff

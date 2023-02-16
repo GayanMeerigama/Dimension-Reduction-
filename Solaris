@@ -1,0 +1,72 @@
+Anyway, lets say you are on Solaris 10 or older: Your /etc/nsswitch.conf should have an entry like this:
+
+hosts:  files dns
+
+This tells the Solaris Naming Service that hosts should be looked up first in the local file 
+(i.e. /etc/hosts) and then in DNS. You can of course also only have "dns" here but people will 
+normally want it so that /etc/hosts can override what is in DNS.
+
+
+Solaris 10 installation steps using serial port 
+
+restart the naming service daemon:
+	svcadm restart /system/name-service-cache
+
+
+verify your naming service setup:
+	getent hosts google.com
+
+
+Delete Default
+-----------------
+route delete default 10.40.19.186
+
+netstat -rn  
+
+list down netstat
+
+
+
+
+export https_proxy=http://10.40.2.36:3128
+echo $http_proxy
+
+
+To identify the boot device at OK prompt :
+	ok> printenv boot-device
+boot-device = rootdisk mirrordisk
+
+#prtconf -vp | grep bootpath
+
+
+Setup IPv4
+==========
+1. go to bash : bash
+2. ip info: ifconfig -a
+3. set ip: ifconfig bge0 10.40.19.22/24
+4. to view route table: netstat -rn
+5. default gateway: route add default 10.40.19.254
+6. delete default: route delete default 10.40.19.186
+7. set proxy temporary: 
+	export https_proxy=http://10.40.2.36:3128
+	echo $http_proxy
+8. add dns:
+	edit /etc/resolv.conf file.
+
+	nameserver 10.40.18.1
+	nameserver 10.40.1.2
+
+9. to check if a name is resolved: nslookup www.google.com
+
+10. edit /etc/hosts file
+
+	127.0.0.1	localhost 
+	10.40.19.22	sla-test	loghost	
+
+11. /etc/nsswitch.conf should have an entry like this:
+	hosts:  files dns
+
+12. eneble wget :ln -s /usr/sfw/bin/wget /usr/bin/wget
+ n
+
+

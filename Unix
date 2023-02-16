@@ -4,3 +4,51 @@ network -> networkproxy -> manual
 scp gayan@aiken.ce.pdn.ac.lk:/home/gayan/Desktop/apply_PC_no1.arff  ./
 scp weka-3-7-12.zip  hpc-admin@aiken.ce.pdn.ac.lk:/home/hpc-admin/gayan
 unzip file.zip -d destination_folder
+
+
+#!/bin/bash
+
+# make a folder called files and put all the files in it. 
+# copy this file into the same folder as 'files' folder ( NOT inside it )
+# go to the terminal and cd to the folder where this script is
+# type chmod +x run in the terminal
+ 
+mkdir target || (echo "a folder called target should not exist" && exit 1)
+for file in $(ls ./files/)
+do
+targetName=`echo "$file" | awk 'BEGIN{FS="."}{print $1}'`
+tr 'A-Z' 'a-z' < ./files/$file | tr -cs '[a-z]' '\012' | awk '{ printf("%s ",$1)} END{printf("\n")} ' > ./target/$targetName".dat"
+done
+
+"#!/bin/bash
+
+# make a folder called files and put all the files in it. 
+# copy this file into the same folder as 'files' folder ( NOT inside it )
+# go to the terminal and cd to the folder where this script is
+# type chmod +x run in the terminal
+ 
+rm f 2> /dev/null
+touch f
+for file in $(ls ./files/)
+do
+	tr 'A-Z' 'a-z' < ./files/$file | tr -cs '[a-z]' '\012' | awk '{ printf(""%s "",$1)} END{printf(""\n"")} ' >> f
+done
+"
+
+
+sed -n 10000,100000p somefile.txt
+cut -d " " -f 2- data1.txt > outvect2
+cut -c1-3 test.txt 
+tac filename
+wc -l <file>
+
+wget -r --no-parent http://dmoztools.net/News/
+cat * */* */*/* > business.txt
+grep -o 'http://[^"]*' sports.txt > sports_url.txt
+screen -r 15848.pts-7.aiken
+wget -i  urls_education -t 1
+for f in *; do mv "$f" "$f.html"; done
+pdftotext E13120Lab1.pdf E13120Lab1.txt
+for file in *.pdf; do pdftotext "$file" "$file.txt"; done
+cat * */* */*/*
+cp `ls | tail -n 250` /home2/gayan/Desktop/dmoztools.net/health2/

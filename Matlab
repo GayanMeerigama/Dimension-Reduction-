@@ -1,0 +1,9 @@
+A = importdata('outvect2');
+
+size(A)
+
+FICA_Algorithm(A )
+
+[ Wi,ys ]=FICA_Algorithm(A );
+
+dlmwrite('F:\myFile.txt',G)
